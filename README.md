@@ -1,22 +1,22 @@
 # AI Research Assistant
 
-A Streamlit-based AI assistant that allows users to upload PDF documents and ask questions using natural language.
+AI-powered PDF Question Answering application built using Streamlit, LangChain, and Groq Llama models.
 
 ## Features
 
-* PDF upload and processing
-* Document chunking using LangChain
-* Context-based retrieval
-* AI-powered question answering using Groq Llama models
+* Upload PDF documents
+* Extract and process document content
+* Document chunking for efficient context retrieval
+* Natural language question answering
 * Interactive chat interface
-* Session-based chat history
+* Session-based conversation history
 
-## Technologies Used
+## Tech Stack
 
 * Python
 * Streamlit
 * LangChain
-* Groq API
+* Groq API (Llama 3.3 70B)
 * PyPDF
 * python-dotenv
 
@@ -32,17 +32,19 @@ Create a `.env` file:
 GROQ_API_KEY=your_api_key_here
 ```
 
-Run:
+Run the application:
 
 ```bash
 streamlit run app.py
 ```
 
-## Project Structure
+## Future Improvements
 
-```text
-app.py
-requirements.txt
-README.md
-.env
+* FAISS vector search
+* Source citations
+* Downloadable chat history
+* Multi-document support
+* Conversation memory
+
+```
 ```
