@@ -2,13 +2,15 @@
 
 A GenAI-powered document assistant that helps users interact with PDF files using natural language questions.
 
-Built as a learning project to explore how **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Vector Databases** can be combined to create useful AI applications.
+Built as a learning project to explore how **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Vector Databases** can be combined to build practical AI applications.
 
 ## 🌟 Project Overview
 
-Instead of manually searching through lengthy documents, this application allows users to upload a PDF and ask questions directly. The system understands the document, finds relevant information, and generates meaningful answers using AI.
+Reading and finding information from lengthy documents can be time-consuming. This application makes document analysis easier by allowing users to upload a PDF and ask questions directly.
 
-The project uses a RAG pipeline where document content is converted into embeddings, stored in a vector database, and retrieved whenever a user asks a question.
+The system understands the uploaded document, retrieves relevant information based on user queries, and generates meaningful answers using AI.
+
+The project follows a **Retrieval-Augmented Generation (RAG)** approach where document content is converted into embeddings, stored in a vector database, and retrieved whenever a user asks a question.
 
 ## 🚀 Features
 
@@ -16,29 +18,65 @@ The project uses a RAG pipeline where document content is converted into embeddi
 ✅ Ask questions using natural language  
 ✅ ChatGPT-like conversational interface  
 ✅ Semantic document search  
-✅ Context-based AI responses  
+✅ Context-aware AI responses  
 ✅ Maintains conversation history  
-✅ Supports different types of documents
+✅ Supports different types of documents  
 
 ## 🔧 Technologies Used
 
 - Python
 - Streamlit
 - LangChain
-- FAISS
+- FAISS Vector Database
 - HuggingFace Embeddings
 - Groq Llama 3.3
 - PyPDF
 
 ## ⚙️ How It Works
 
-1. Upload a PDF document
-2. Extract text from the document
-3. Split content into smaller chunks
-4. Convert chunks into embeddings
-5. Store embeddings using FAISS
-6. Retrieve relevant information for user queries
-7. Generate answers using Llama LLM
+```
+Upload PDF Document
+        ↓
+Extract Text Content
+        ↓
+Split Text into Chunks
+        ↓
+Generate Embeddings
+        ↓
+Store in FAISS Vector Database
+        ↓
+Retrieve Relevant Information
+        ↓
+Generate Response using Llama LLM
+```
+
+## 💻 Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yagnasreekamireddy/ai-research-assistant.git
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Add API Key
+
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=your_api_key_here
+```
+
+### Run the application
+
+```bash
+streamlit run app.py
+```
 
 ## 🎯 Use Cases
 
@@ -47,21 +85,29 @@ The project uses a RAG pipeline where document content is converted into embeddi
 - Academic notes assistant
 - Business document analysis
 - Report understanding
+- Knowledge extraction from documents
 
 ## 📌 Key Learnings
 
 Through this project, I explored:
 
-- Building RAG applications
-- Working with LLM APIs
+- Building Retrieval-Augmented Generation (RAG) applications
+- Working with Large Language Model APIs
 - Vector similarity search
 - Document processing pipelines
+- Embedding-based retrieval
 - Developing AI applications using Streamlit
 
 ## 🔮 Future Enhancements
 
 - Multiple PDF support
-- Source citations
+- Source citations with page references
 - Cloud deployment
-- Voice interaction
+- Voice-based interaction
 - Improved retrieval techniques
+
+## 👩‍💻 Author
+
+**Yagnasree Kamireddy**
+
+B.Tech Computer Science Engineering (Data Science)
