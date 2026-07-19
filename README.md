@@ -1,50 +1,42 @@
 # AI Research Assistant
 
-AI-powered PDF Question Answering application built using Streamlit, LangChain, and Groq Llama models.
+An AI-powered PDF Question Answering application built using Python, Streamlit, LangChain, FAISS, and Groq Llama 3.3.
 
 ## Features
 
-* Upload PDF documents
-* Extract and process document content
-* Document chunking for efficient context retrieval
-* Natural language question answering
-* Interactive chat interface
-* Session-based conversation history
+- Upload PDF documents
+- Automatic text extraction
+- Document chunking
+- Semantic search using FAISS
+- Retrieval-Augmented Generation (RAG)
+- Natural language question answering
+- Interactive Streamlit interface
+- Session-based chat history
 
 ## Tech Stack
 
-* Python
-* Streamlit
-* LangChain
-* Groq API (Llama 3.3 70B)
-* PyPDF
-* python-dotenv
+- Python
+- Streamlit
+- LangChain
+- FAISS
+- Groq API (Llama 3.3 70B)
+- PyPDF
+- python-dotenv
+
+## Project Workflow
+
+1. Upload a PDF
+2. Extract text from the document
+3. Split text into chunks
+4. Generate embeddings
+5. Store embeddings in FAISS
+6. Retrieve relevant chunks
+7. Send retrieved context to Groq LLM
+8. Generate context-aware answers
 
 ## Installation
 
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file:
-
-```env
-GROQ_API_KEY=your_api_key_here
-```
-
-Run the application:
+Clone the repository
 
 ```bash
-streamlit run app.py
-```
-
-## Future Improvements
-
-* FAISS vector search
-* Source citations
-* Downloadable chat history
-* Multi-document support
-* Conversation memory
-
-```
-```
+git clone https://github.com/yagnasreekamireddy/ai-research-assistant.git
