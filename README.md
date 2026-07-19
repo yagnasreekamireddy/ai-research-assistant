@@ -1,42 +1,67 @@
-# AI Research Assistant
+# 🤖 AI Research Assistant
 
-An AI-powered PDF Question Answering application built using Python, Streamlit, LangChain, FAISS, and Groq Llama 3.3.
+A GenAI-powered document assistant that helps users interact with PDF files using natural language questions.
 
-## Features
+Built as a learning project to explore how **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Vector Databases** can be combined to create useful AI applications.
 
-- Upload PDF documents
-- Automatic text extraction
-- Document chunking
-- Semantic search using FAISS
-- Retrieval-Augmented Generation (RAG)
-- Natural language question answering
-- Interactive Streamlit interface
-- Session-based chat history
+## 🌟 Project Overview
 
-## Tech Stack
+Instead of manually searching through lengthy documents, this application allows users to upload a PDF and ask questions directly. The system understands the document, finds relevant information, and generates meaningful answers using AI.
+
+The project uses a RAG pipeline where document content is converted into embeddings, stored in a vector database, and retrieved whenever a user asks a question.
+
+## 🚀 Features
+
+✅ Upload and analyze PDF documents  
+✅ Ask questions using natural language  
+✅ ChatGPT-like conversational interface  
+✅ Semantic document search  
+✅ Context-based AI responses  
+✅ Maintains conversation history  
+✅ Supports different types of documents
+
+## 🔧 Technologies Used
 
 - Python
 - Streamlit
 - LangChain
 - FAISS
-- Groq API (Llama 3.3 70B)
+- HuggingFace Embeddings
+- Groq Llama 3.3
 - PyPDF
-- python-dotenv
 
-## Project Workflow
+## ⚙️ How It Works
 
-1. Upload a PDF
+1. Upload a PDF document
 2. Extract text from the document
-3. Split text into chunks
-4. Generate embeddings
-5. Store embeddings in FAISS
-6. Retrieve relevant chunks
-7. Send retrieved context to Groq LLM
-8. Generate context-aware answers
+3. Split content into smaller chunks
+4. Convert chunks into embeddings
+5. Store embeddings using FAISS
+6. Retrieve relevant information for user queries
+7. Generate answers using Llama LLM
 
-## Installation
+## 🎯 Use Cases
 
-Clone the repository
+- Resume analysis
+- Research paper exploration
+- Academic notes assistant
+- Business document analysis
+- Report understanding
 
-```bash
-git clone https://github.com/yagnasreekamireddy/ai-research-assistant.git
+## 📌 Key Learnings
+
+Through this project, I explored:
+
+- Building RAG applications
+- Working with LLM APIs
+- Vector similarity search
+- Document processing pipelines
+- Developing AI applications using Streamlit
+
+## 🔮 Future Enhancements
+
+- Multiple PDF support
+- Source citations
+- Cloud deployment
+- Voice interaction
+- Improved retrieval techniques
