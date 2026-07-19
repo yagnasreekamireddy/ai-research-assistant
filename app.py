@@ -2,35 +2,34 @@ import os
 import streamlit as st
 
 from dotenv import load_dotenv
+from pypdf import PdfReader
 
 from langchain_groq import ChatGroq
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from pypdf import PdfReader
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 
-load_dotenv(".env")
+load_dotenv()
 
-api_key = os.getenv("GROQ_API_KEY")
+api_key = os.getenv("M")
 
 st.set_page_config(page_title="AI Research Assistant")
 
 st.title("📄 AI Research Assistant")
 
-st.write(
-    "Upload a PDF and ask questions about its contents."
-)
+st.write("Upload a PDF and ask questions about its contents.")
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-if "chunks" not in st.session_state:
-    st.session_state.chunks = []
+if "vector_store" not in st.session_state:
+    st.session_state.vector_store = None
 
 llm = ChatGroq(
     api_key=api_key,
     model_name="llama-3.3-70b-versatile",
     temperature=0.3
 )
-
 uploaded_file = st.file_uploader(
     "Upload PDF",
     type=["pdf"]
@@ -43,7 +42,6 @@ if uploaded_file:
     text = ""
 
     for page in reader.pages:
-
         page_text = page.extract_text()
 
         if page_text:
@@ -54,72 +52,72 @@ if uploaded_file:
         chunk_overlap=200
     )
 
-    st.session_state.chunks = splitter.split_text(text)
+    chunks = splitter.split_text(text)
+
+    embeddings = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
+    )
+
+    st.session_state.vector_store = FAISS.from_texts(
+        chunks,
+        embedding=embeddings
+    )
 
     st.success(
-        f"PDF Loaded Successfully! "
-        f"{len(st.session_state.chunks)} chunks created."
+        f"PDF Loaded Successfully! {len(chunks)} chunks created and indexed."
     )
 
-question = st.text_input(
-    "Ask a question about the PDF"
-)
+# Display previous conversation
+for chat in st.session_state.chat_history:
+    with st.chat_message("user"):
+        st.markdown(chat["question"])
 
-if question and st.session_state.chunks:
+    with st.chat_message("assistant"):
+        st.markdown(chat["answer"])
 
-    query_words = question.lower().split()
+question = st.chat_input("Ask a question about the PDF")
+if question and st.session_state.vector_store is not None:
 
-    relevant_chunks = []
+    with st.chat_message("user"):
+        st.markdown(question)
 
-    for chunk in st.session_state.chunks:
-
-        chunk_lower = chunk.lower()
-
-        if any(
-            word in chunk_lower
-            for word in query_words
-        ):
-            relevant_chunks.append(chunk)
+    docs = st.session_state.vector_store.similarity_search(
+        question,
+        k=3
+    )
 
     context = "\n\n".join(
-        relevant_chunks[:3]
+        [doc.page_content for doc in docs]
     )
-
-    if not context:
-        context = "\n\n".join(
-            st.session_state.chunks[:3]
-        )
 
     response = llm.invoke(
-        f"""
-        Answer using the PDF context.
+    f"""
+You are an AI Research Assistant.
 
-        Context:
-        {context}
+Answer the user's question using only the document context.
 
-        Question:
-        {question}
-        """
-    )
+Context:
+{context}
+
+User Question:
+{question}
+Instructions:
+- Answer in a structured format with headings and bullet points.
+- Include all relevant information from the document.
+- Do not omit any projects, skills, or important details.
+- If the information is not available in the document, clearly say:
+  "The uploaded document does not contain this information."
+"""
+)
 
     answer = response.content
+
+    with st.chat_message("assistant"):
+        st.markdown(answer)
 
     st.session_state.chat_history.append(
         {
             "question": question,
             "answer": answer
         }
-    )
-
-if st.button("Clear Chat"):
-    st.session_state.chat_history = []
-
-for chat in st.session_state.chat_history:
-
-    st.markdown(
-        f"**You:** {chat['question']}"
-    )
-
-    st.info(
-        chat["answer"]
     )
