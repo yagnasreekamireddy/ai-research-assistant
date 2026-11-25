@@ -1,4 +1,7 @@
-venv/ 
-.env 
-__pycache__/ 
-Kami Reddy_Yagna Sree_Resume.pdf 
+venv/
+.env
+__pycache__/
+*.pyc
+Kami Reddy_Yagna Sree_Resume.pdf
+uploaded.pdf
+ai-research-assistant/
