@@ -1,113 +1,89 @@
-# 🤖 AI Research Assistant
+# AI Research Assistant
 
-A GenAI-powered document assistant that helps users interact with PDF files using natural language questions.
+An AI-powered PDF research assistant built with Streamlit. Upload PDF documents and ask questions in natural language using Retrieval-Augmented Generation (RAG).
 
-Built as a learning project to explore how **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and Vector Databases** can be combined to build practical AI applications.
+## Features
 
-## 🌟 Project Overview
+- Upload and preview PDF documents
+- Extract text from PDF files
+- Split documents into smaller chunks
+- Generate embeddings using HuggingFace
+- Store and retrieve document vectors using FAISS
+- Perform semantic similarity search
+- Generate answers using Groq API and GPT-OSS 20B
+- Context-aware question answering
+- Session-based chat history
 
-Reading and finding information from lengthy documents can be time-consuming. This application makes document analysis easier by allowing users to upload a PDF and ask questions directly.
-
-The system understands the uploaded document, retrieves relevant information based on user queries, and generates meaningful answers using AI.
-
-The project follows a **Retrieval-Augmented Generation (RAG)** approach where document content is converted into embeddings, stored in a vector database, and retrieved whenever a user asks a question.
-
-## 🚀 Features
-
-✅ Upload and analyze PDF documents  
-✅ Ask questions using natural language  
-✅ ChatGPT-like conversational interface  
-✅ Semantic document search  
-✅ Context-aware AI responses  
-✅ Maintains conversation history  
-✅ Supports different types of documents  
-
-## 🔧 Technologies Used
+## Tech Stack
 
 - Python
 - Streamlit
 - LangChain
-- FAISS Vector Database
+- Groq API
+- GPT-OSS 20B (`openai/gpt-oss-20b`)
 - HuggingFace Embeddings
-- Groq Llama 3.3
+- FAISS
 - PyPDF
+- python-dotenv
 
-## ⚙️ How It Works
+## Installation
 
-```
-Upload PDF Document
-        ↓
-Extract Text Content
-        ↓
-Split Text into Chunks
-        ↓
-Generate Embeddings
-        ↓
-Store in FAISS Vector Database
-        ↓
-Retrieve Relevant Information
-        ↓
-Generate Response using Llama LLM
-```
-
-## 💻 Installation
-
-### Clone the repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/yagnasreekamireddy/ai-research-assistant.git
+cd ai-research-assistant
 ```
 
-### Install dependencies
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate it in Windows PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Add API Key
+## API Configuration
 
-Create a `.env` file:
+Create a `.env` file in the project root:
 
 ```env
 GROQ_API_KEY=your_api_key_here
 ```
 
-### Run the application
+Replace the placeholder with your own Groq API key. Never upload your actual API key to GitHub.
+
+## Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-## 🎯 Use Cases
+## Project Structure
 
-- Resume analysis
-- Research paper exploration
-- Academic notes assistant
-- Business document analysis
-- Report understanding
-- Knowledge extraction from documents
+```text
+ai-research-assistant/
+|-- app.py
+|-- requirements.txt
+|-- README.md
+|-- .gitignore
+```
 
-## 📌 Key Learnings
+## How It Works
 
-Through this project, I explored:
-
-- Building Retrieval-Augmented Generation (RAG) applications
-- Working with Large Language Model APIs
-- Vector similarity search
-- Document processing pipelines
-- Embedding-based retrieval
-- Developing AI applications using Streamlit
-
-## 🔮 Future Enhancements
-
-- Multiple PDF support
-- Source citations with page references
-- Cloud deployment
-- Voice-based interaction
-- Improved retrieval techniques
-
-## 👩‍💻 Author
-
-**Yagnasree Kamireddy**
-
-B.Tech Computer Science Engineering (Data Science)
+1. Upload a PDF document.
+2. Extract and split its text into chunks.
+3. Generate embeddings for document chunks.
+4. Store embeddings in a FAISS vector database.
+5. Retrieve relevant content when a question is asked.
+6. Generate an answer using retrieved context and the Groq API.
